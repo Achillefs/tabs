@@ -3,6 +3,7 @@ require 'spork'
 Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
+  require 'capybara/rails'
   require 'rspec/rails'
   require 'rspec/autorun'
 
