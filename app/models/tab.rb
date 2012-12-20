@@ -12,9 +12,32 @@ class Tab < ActiveRecord::Base
   Return an old-style text-only tab
 =end
   def to_text
+    text = "#{title.center(fretboard.first.size)}\n"
+    text << fretboard.join("\n")
+  end
+  
+  def to_page width = 80
+    if fretboard.first.size > width
+      fixed_length_fretboard = fretboard.map do |string|
+        string.scan(/.{1,#{width}}/)
+      end
+      page = "#{title.center(width)}\n"
+      data = (0..(fixed_length_fretboard.first.size-1)).map { |row| fixed_length_fretboard.map {|string| string[row]} }
+      page << data.map {|row| row.map {|r| r.ljust(width,'-')}.join("\n")}.join("\n\n")
+    else
+      to_text
+    end
+  end
+  
+=begin rdoc
+  returns an array representing a fretboard. Right now time is not represented, only finger positions on strings
+=end
+  def fretboard
+    return @fretboard if @fretboard.present? and !self.content_changed?
+    
     fretboard = (1..string_count).collect {(1..tab_length).collect { "---" }}
     vertical_count = 0
-    notes.each do |strum|
+    verticals.each do |strum|
       # it's a single note
       if strum.first.is_a?(Integer)
         string, fret = strum
@@ -28,12 +51,11 @@ class Tab < ActiveRecord::Base
       end
       vertical_count += 1
     end
-    fretboard = fretboard.map(&:join).reverse
-    fretboard.join("\n")
+    @fretboard = fretboard.map(&:join).reverse
   end
   
   def tab_length
-    notes.size
+    verticals.size
   end
   
   def string_count
@@ -46,7 +68,7 @@ class Tab < ActiveRecord::Base
 =begin rdoc
   Returns content as structured array. Old school, yeah!
 =end
-  def notes
+  def verticals
     content.split.map do |vertical| 
       if vertical.include? '-'
         vertical.split('-').map {|n| n.split('|').map(&:to_i)}
