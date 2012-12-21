@@ -1,7 +1,10 @@
 class Tab < ActiveRecord::Base
+  INSTRUMENTS = %W[ guitar 7string-guitar bass 5string-bass mandolin 4string-bouzouki 3string-bouzouki ]
+  
   before_save :default_values
-  validates_uniqueness_of :title
-  validates_uniqueness_of :content
+  validates_uniqueness_of :title, :null => false
+  validates_uniqueness_of :content, :null => false
+  attr_accessible :title, :content, :instrument
   
   def has_user?
     self.user_id == 0 ? false : true
@@ -60,8 +63,16 @@ class Tab < ActiveRecord::Base
   
   def string_count
     case self.instrument
+    when '7string-guitar'
+      7
     when 'guitar'
       6
+    when '5string-bass'
+      5
+    when 'mandolin', '4string-bouzouki', 'bass'
+      4
+    when '3string-bouzouki'
+      3
     end
   end
   

@@ -1,3 +1,5 @@
-<%= form_for @tab %>
-  <%= text_field :title %>
+<%= form_for @tab do |f| %>
+  <p><%= f.text_field :title, :placeholder => 'title' %></p>
+  <p><%= f.text_area :content, :placeholder => 'content' %></p>
+  <p><%= f.submit %></p>
 <% end %>
