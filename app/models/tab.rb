@@ -44,12 +44,12 @@ class Tab < ActiveRecord::Base
       # it's a single note
       if strum.first.is_a?(Integer)
         string, fret = strum
-        fretboard[string-1][vertical_count] = "#{fret}--"
+        fretboard[string-1][vertical_count] = fret >= 10 ? "#{fret}-" : "#{fret}--"
       # it's a chord
       else
         strum.each do |note|
           string, fret = note
-          fretboard[string-1][vertical_count] = "#{fret}--"
+          fretboard[string-1][vertical_count] = fret >= 10 ? "#{fret}-" : "#{fret}--"
         end
       end
       vertical_count += 1
