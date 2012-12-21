@@ -1,0 +1,26 @@
+.flash-message {
+  border-top: 2px solid; border-bottom: 2px solid; margin-bottom:1em;
+  border: solid 1px black;
+  
+  p {
+    padding: 10px 2em;
+  }
+  
+  .close {
+    float:right; cursor: pointer;
+    font-size:80%; padding:3px;
+  }
+  
+  &.error {
+    background-color: #faf2f2; border-color: #d69999; color: #900;
+    
+    .close { background-color: #d69999; color: #faf2f2; }
+  }
+  &.notice {
+    background-color: #ccffdf; border-color: #9cdfac; color: #337143;
+    
+    .close { background-color: #9cdfac; color: #ccffdf; }
+  }
+  
+
+}

@@ -10,9 +10,10 @@ Spork.prefork do
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
-
+  Capybara.default_wait_time = 3
   RSpec.configure do |config|
     config.mock_with :rspec
+    config.include Capybara::DSL
     require 'database_cleaner'
     config.before(:suite) do
       DatabaseCleaner.strategy = :truncation
