@@ -1,6 +1,32 @@
+body {
+  font: {
+      family: Helvetica, Arial, Verdana;
+      size: 96%;
+    }
+}
 .tabs.show {
   pre {
     letter-spacing :-2px;
-    font: courier;
+    font-family: courier;
+  }
+}
+
+$input_padding: 4px;
+$form_font: 108%;
+
+form {
+  input[type='text'] {
+    padding: $input_padding;
+    font-size: $form_font;
+  }
+  
+  textarea {
+    padding: $input_padding;
+    font-size: $form_font;
+  }
+  
+  input[type='submit'] {
+    padding: $input_padding;
+    font-size: $form_font;
   }
 }
