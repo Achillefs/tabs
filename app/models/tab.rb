@@ -2,8 +2,7 @@ class Tab < ActiveRecord::Base
   INSTRUMENTS = %W[ guitar 7string-guitar bass 5string-bass mandolin 4string-bouzouki 3string-bouzouki ]
   
   before_save :default_values
-  validates_presence_of :title, :content
-  validates_uniqueness_of :title, :content, :allow_nil => false
+  validates :title, :content, :presence => true, :uniqueness => true, :allow_nil => false
   attr_accessible :title, :content, :instrument
   
   def has_user?

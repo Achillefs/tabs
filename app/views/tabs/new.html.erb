@@ -1,6 +1,21 @@
 <%= form_for @tab do |f| %>
   <%= f.error_messages %>
-  <p><%= f.text_field :title, :placeholder => 'title' %></p>
-  <p><%= f.text_area :content, :placeholder => 'content' %></p>
+  <%= f.hidden_field :content %>
+  <p><%= f.text_field :title, :placeholder => 'Title' %></p>
+  <p class="instruments">
+    <% Tab::INSTRUMENTS.each do |instrument| %>
+      <label for="tab_instrument_<%= instrument %>"><%= instrument.capitalize %>
+      <%= f.radio_button :instrument, instrument %></label>
+    <% end %>
+  </p>
+  <div class="row fretboard">
+  <% (1..30).each do |grid| %>
+    <ul class="grid1 column v<%= grid %>" data-vertical="<%= grid %>">
+      <% (1..@tab.string_count).to_a.reverse.each do |string| %>
+        <li class="s<%= string %>" data-string="<%= string %>">&nbsp;</li>
+      <% end %>
+    </ul>
+  <% end %>
+  </div>
   <p><%= f.submit %></p>
 <% end %>

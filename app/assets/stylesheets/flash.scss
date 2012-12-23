@@ -5,6 +5,7 @@ $error_border: #d69999;
 $notice_font: #337143;
 $notice_bg: #ccffdf;
 $notice_border: #9cdfac;
+$default_margin: 4px;
 .close {text-decoration:none}
 .flash-message {
   border-top: 2px solid; border-bottom: 2px solid; margin-bottom:1em;
@@ -40,15 +41,7 @@ $notice_border: #9cdfac;
 .errorExplanation {
   border:1px solid; padding:4px 1em; margin-bottom:1em;
   background-color: $error_bg; border-color: $error_border; color: $error_font;
-  h2 {
-    color: $error_font;
-  }
-  
-  p {
-    
-  }
-  
-  ul li {
-    
-  }
+  h2 { font-weight:bold;}
+  p { font-weight:100; margin: $default_margin; }
+  ul li { margin: $default_margin; }
 }

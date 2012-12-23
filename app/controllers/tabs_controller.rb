@@ -1,7 +1,7 @@
 class TabsController < ApplicationController
   before_filter :load_tab, :only => [:show, :edit, :update]
   def new
-    @tab = Tab.new
+    @tab = Tab.new(:instrument => 'guitar')
   end
   
   def create
