@@ -10,7 +10,10 @@ describe TabsController do
   end
   
   describe '#create' do
-    before { post :create, build(:tab).attributes }
+    before { 
+      tab = build(:tab)
+      post :create, :tab => { :title => tab.title, :content => tab.content }
+    }
     
     it { response.code.to_i.should eq(302) }
     it { assigns(:tab).should eq(Tab.first) }

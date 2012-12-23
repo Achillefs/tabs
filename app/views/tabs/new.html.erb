@@ -1,4 +1,5 @@
 <%= form_for @tab do |f| %>
+  <%= f.error_messages %>
   <p><%= f.text_field :title, :placeholder => 'title' %></p>
   <p><%= f.text_area :content, :placeholder => 'content' %></p>
   <p><%= f.submit %></p>

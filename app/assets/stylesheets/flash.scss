@@ -1,3 +1,11 @@
+$error_font: #900;
+$error_bg: #faf2f2;
+$error_border: #d69999;
+
+$notice_font: #337143;
+$notice_bg: #ccffdf;
+$notice_border: #9cdfac;
+.close {text-decoration:none}
 .flash-message {
   border-top: 2px solid; border-bottom: 2px solid; margin-bottom:1em;
   border: solid 1px black;
@@ -12,13 +20,35 @@
   }
   
   &.error {
-    background-color: #faf2f2; border-color: #d69999; color: #900;
+    background-color: $error_bg; border-color: $error_border; color: $error_font;
     
-    .close { background-color: #d69999; color: #faf2f2; }
+    .close { background-color: $error_border; color: $error_bg; }
   }
   &.notice {
-    background-color: #ccffdf; border-color: #9cdfac; color: #337143;
+    background-color: $notice_bg; border-color: $notice_border; color: $notice_font;
     
-    .close { background-color: #9cdfac; color: #ccffdf; }
+    .close { background-color: $notice_border; color: $notice_bg; }
+  }
+}
+
+.field_with_errors input,
+.field_with_errors textarea {
+  border-color: $error_border;
+  background-color: $error_bg;
+}
+
+.errorExplanation {
+  border:1px solid; padding:4px 1em; margin-bottom:1em;
+  background-color: $error_bg; border-color: $error_border; color: $error_font;
+  h2 {
+    color: $error_font;
+  }
+  
+  p {
+    
+  }
+  
+  ul li {
+    
   }
 }

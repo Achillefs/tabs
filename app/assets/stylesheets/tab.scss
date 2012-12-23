@@ -1,3 +1,7 @@
+$def_margin: 4px;
+$input_padding: 4px;
+$form_font: 108%;
+
 body {
   font: {
       family: Helvetica, Arial, Verdana;
@@ -11,21 +15,11 @@ body {
   }
 }
 
-$input_padding: 4px;
-$form_font: 108%;
-
 form {
-  input[type='text'] {
-    padding: $input_padding;
-    font-size: $form_font;
-  }
-  
+  input[type='text'],
+  input[type='submit'],
   textarea {
-    padding: $input_padding;
-    font-size: $form_font;
-  }
-  
-  input[type='submit'] {
+    margin: $def_margin;
     padding: $input_padding;
     font-size: $form_font;
   }

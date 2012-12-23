@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
+gem 'dynamic_form'
 gem 'sqlite3'
 gem 'jquery-rails'
 
