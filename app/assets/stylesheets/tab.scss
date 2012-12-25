@@ -1,6 +1,18 @@
 $def_margin: 4px;
 $input_padding: 4px;
 $form_font: 108%;
+@mixin box-shadow($type: inset, $x: 5px, $y: 5px, $radius: 5px, $color: #666){
+  box-shadow: $type $x $y $radius $color;
+  -moz-box-shadow: $type $x $y $radius $color;
+  -webkit-box-shadow: $type $x $y $radius $color;
+}
+
+@mixin border-with-radius($radius: 4px, $color: #666, $width: 1px, $style: solid){
+  border: $width $style $color;
+  border-radius: $radius $color;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
 
 body {
   font: {
@@ -15,21 +27,10 @@ body {
   }
 }
 
-form {
-  input[type='text'],
-  input[type='submit'],
-  textarea {
-    margin: $def_margin;
-    padding: $input_padding;
-    font-size: $form_font;
-  }
-  p.instruments { margin: $def_margin; }
-}
-
 /* ================ */
-/* = The 1Kb Grid = */     /* 16 columns, 40 pixels each, with 10 pixel gutter */
+/*: The 1Kb Grid: */     /* 16 columns, 40 pixels each, with 10 pixel gutter */
 /* ================ */
-$cell_width: 20px;
+$cell_width: 24px;
 $cell_margin: 0px;
 $columns: 30;
 .grid1 { width:$cell_width; }
@@ -79,11 +80,35 @@ $columns: 30;
 	display: inline-block;
 }
 
-.fretboard {
-  ul li {
-    height:20px;
-    background: url('/assets/string-bg.gif') left center repeat-x transparent;
+.tabs {
+  form {
+    input[type='text'],
+    input[type='submit'],
+    textarea {
+      margin: $def_margin;
+      padding: $input_padding;
+      font-size: $form_font;
+    }
+    p.instruments { margin: $def_margin; }
+    
+    .fretboard {
+      ul li {
+        height:20px;
+        background: url('/assets/string-bg.gif') left -2px repeat-x transparent;
+        
+        input { 
+          font-size:11px; width:2em; padding:0; margin:0;
+          text-align:center; background-color:transparent; 
+          border:none;
+        }
+        
+        input:active {border:none}
+      }
+      ul li.current div {
+        @include border-with-radius($color: silver);
+        height:14px; padding:0; margin:0;
+        background-color:white; width:20px;
+      }
+    }
   }
-  
-  li.current { background: url('/assets/string-bg-current.gif') left center repeat-x transparent; }
 }

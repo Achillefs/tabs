@@ -33,10 +33,50 @@ describe "Tabs", :js => true do
     
     it 'listens to keyboard navigation' do
       page.should have_css '.s1.current', :count => 1
+      
+      send_keys :arrow_up
+      page.should_not have_css '.v1 .s1.current'
+      page.should have_css '.v1 .s2.current', :count => 1
+      
+      send_keys :arrow_left
+      page.should_not have_css '.v1 .s2.current'
+      page.should have_css '.v30 .s2.current', :count => 1
+      
+      send_keys :arrow_right
+      page.should_not have_css '.v30 .s2.current'
+      page.should have_css '.v1 .s2.current', :count => 1
+      
+      send_keys :arrow_right
+      page.should_not have_css '.v1 .s2.current'
+      page.should have_css '.v2 .s2.current', :count => 1
+      
+      send_keys :arrow_down
+      page.should_not have_css '.v2 .s2.current'
+      page.should have_css '.v2 .s1.current', :count => 1
+      
+      send_keys :arrow_down
+      page.should_not have_css '.v2 .s1.current'
+      page.should have_css '.v2 .s6.current', :count => 1
+    end
+    
+    it 'allows fret number input' do
+      send_keys '5'
       sleep 1
-      send_keys 38
-      page.should_not have_css '.s1.current'
-      page.should have_css '.s2.current', :count => 1
+      page.should have_css 'div#1_1', :text => '5'
+      send_keys '1'
+      sleep 1
+      page.should have_css 'div#1_1', :text => '1'
+      send_keys '2'
+      sleep 1
+      page.should have_css 'div#1_1', :text => '12'
+      send_keys :backspace
+      page.should have_css 'div#1_1', :text => ''
+      send_keys '24'
+      sleep 1
+      page.should have_css 'div#1_1', :text => '24'
+      send_keys '8'
+      sleep 1
+      page.should have_css 'div#1_1', :text => '8'
     end
   end
 end
