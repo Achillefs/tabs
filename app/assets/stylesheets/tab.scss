@@ -9,16 +9,34 @@ $form_font: 108%;
 
 @mixin border-with-radius($radius: 4px, $color: #666, $width: 1px, $style: solid){
   border: $width $style $color;
-  border-radius: $radius $color;
+  border-radius: $radius;
   -moz-border-radius: $radius;
   -webkit-border-radius: $radius;
 }
 
+@mixin safari-only {
+  body.tabs.new.safari .fretboard {
+    @content;
+  }
+}
+
+@mixin firefox-only {
+  body.tabs.new.firefox .fretboard {
+    @content;
+  }
+}
+
+@mixin ie-only {
+  body.tabs.new.ie .fretboard {
+    @content;
+  }
+}
+
 body {
   font: {
-      family: Helvetica, Arial, Verdana;
-      size: 96%;
-    }
+    family: Helvetica, Arial, Verdana;
+    size: 96%;
+  }
 }
 .tabs.show {
   pre {
@@ -94,21 +112,25 @@ $columns: 30;
     .fretboard {
       ul li {
         height:20px;
-        background: url('/assets/string-bg.gif') left -2px repeat-x transparent;
-        
-        input { 
-          font-size:11px; width:2em; padding:0; margin:0;
-          text-align:center; background-color:transparent; 
-          border:none;
-        }
+        background: image-url('string-bg.gif') left 0px repeat-x transparent;
+        font-size:88%; width:2em; padding:0; margin:0; font-weight:bold;
+        text-align:center; background-color:transparent; padding:1px; 
+        border:none;
         
         input:active {border:none}
       }
       ul li.current div {
         @include border-with-radius($color: silver);
-        height:14px; padding:0; margin:0;
-        background-color:white; width:20px;
+        height:14px; padding: 1px;  margin:0 0 0 3px;
+        background-color:white; width:$cell_width - 8;
+        font-weight:normal;
       }
     }
+  }
+}
+
+@include firefox-only {
+  ul li {
+    background-position:left -2px;
   }
 }
