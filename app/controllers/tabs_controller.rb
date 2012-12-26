@@ -7,7 +7,7 @@ class TabsController < ApplicationController
   def create
     @tab = Tab.new(params[:tab])
     if @tab.save
-      redirect_to tab_path(@tab)
+      redirect_to edit_tab_path(@tab)
     else
       flash[:error] = 'Curses! Curses? Yah. Something went wrong'
       render :new
@@ -20,7 +20,7 @@ class TabsController < ApplicationController
   
   def update
     if @tab.update_attributes(params[:tab])
-      redirect_to tab_path(@tab)
+      redirect_to edit_tab_path(@tab)
     else
       flash[:error] = 'Curses! Curses? Yah. Something went wrong'
       render :edit

@@ -90,5 +90,10 @@ describe "Tabs", :js => true do
       sleep 1
       page.should have_css 'div#1_1', :text => '14'
     end
+    
+    it 'attempts to save on ctrl+s' do
+      send_keys [:control, 's']
+      page.should have_css '#errorExplanation'
+    end
   end
 end

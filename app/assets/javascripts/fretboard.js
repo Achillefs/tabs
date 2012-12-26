@@ -102,6 +102,11 @@ $(function() {
       $('.fretboard ul li div').text('');
       return false;
     });
+    
+    // Save data
+    Mousetrap.bindGlobal('ctrl+s',function(){
+      $('form input:submit').click();
+    });
   };
 });
 
