@@ -92,7 +92,7 @@ $(function() {
     });
     
     // Delete current fret
-    Mousetrap.bind('backspace',function(){
+    Mousetrap.bind(['backspace','c'],function(){
       $('.fretboard ul li.current div').text('');
       return false; // dont let the browser do its thang
     });
