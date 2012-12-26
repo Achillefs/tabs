@@ -78,5 +78,17 @@ describe "Tabs", :js => true do
       sleep 1
       page.should have_css 'div#1_1', :text => '8'
     end
+    
+    it 'listens to qweasdx keys for non-numpad keyboards' do
+      send_keys 's'
+      sleep 1
+      page.should have_css 'div#1_1', :text => '8'
+      send_keys 'x'
+      sleep 1
+      page.should have_css 'div#1_1', :text => '0'
+      send_keys '1q'
+      sleep 1
+      page.should have_css 'div#1_1', :text => '14'
+    end
   end
 end

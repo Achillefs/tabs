@@ -58,12 +58,37 @@ $(function() {
     /* END Fretboard Arrow navigation */
     
     // START fretboard fret number input
-    Mousetrap.bind(['0','1','2','3','4','5','6','7','8','9'], function(e,key){
+    Mousetrap.bind(
+      ['0','1','2','3','4','5','6','7','8','9','q','w','e','a','s','d','x'], function(e,key){
       var current_val = $('.fretboard ul li.current div').text();
+      var value = key;
+      switch(value){
+        case 'q':
+          value = '4';
+          break;
+        case 'w':
+          value = '5';
+          break;
+        case 'e':
+          value = '6';
+          break;
+        case 'a':
+          value = '7';
+          break;
+        case 's':
+          value = '8';
+          break;
+        case 'd':
+          value = '9';
+          break;
+        case 'x':
+          value = '0';
+          break;
+      }
       if (current_val == '1' || current_val == '2') {
-        key = current_val + key
+        value = current_val + value;
       };
-      $('.fretboard ul li.current div').text(parseInt(key));
+      $('.fretboard ul li.current div').text(value);
     });
     
     // Delete current fret
