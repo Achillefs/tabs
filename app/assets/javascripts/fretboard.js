@@ -96,6 +96,12 @@ $(function() {
       $('.fretboard ul li.current div').text('');
       return false; // dont let the browser do its thang
     });
+    
+    // Delete all data
+    Mousetrap.bind(['ctrl+backspace','ctrl+c'],function(){
+      $('.fretboard ul li div').text('');
+      return false;
+    });
   };
 });
 
