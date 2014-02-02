@@ -13,7 +13,8 @@ end
 
 group :development do
   gem 'capistrano'
-  gem 'capybara'
+  gem 'capybara', '~> 2.2.0'
+  gem 'selenium-webdriver', '~> 2.38.0'
   gem 'database_cleaner'
   gem 'rspec-rails', :require => 'rspec'
   gem 'autotest'

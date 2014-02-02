@@ -6,6 +6,9 @@ class TabsController < ApplicationController
   
   def create
     @tab = Tab.new(params[:tab])
+    #puts "\n\n\n\n\n\n\n\n\n"
+    #puts @tab.inspect
+    #puts "\n\n\n\n\n\n\n\n\n"
     if @tab.save
       redirect_to edit_tab_path(@tab)
     else

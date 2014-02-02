@@ -103,9 +103,14 @@ $(function() {
       return false;
     });
     
-    // Save data
+    // Save data12
     Mousetrap.bindGlobal('ctrl+s',function(){
       $('form input:submit').click();
+    });
+    
+    // submit form
+    $('#new_tab').submit(function(){
+      
     });
   };
 });

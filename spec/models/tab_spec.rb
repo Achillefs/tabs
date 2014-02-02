@@ -7,6 +7,21 @@ describe Tab do
   it { subject.has_user?.should eq(true) }
   it { subject.tab_length.should eq(7) }
   
+  context 'tab with pauses' do
+    let(:tab) { create(:tab, content: '1|0-2|2 1|3-2|5 1|5-2|7 0 1|0 1|3 1|6 1|5') }
+    
+    it 'should correctly display pauses' do
+      puts tab.to_text
+      tab.to_text.should eq("   Smoke on the water   
+------------------------
+------------------------
+------------------------
+------------------------
+2--5--7-----------------
+0--3--5-----0--3--6--5--")
+    end
+  end
+  
   it "doesn't allow 2 tabs with the same name" do
     first_tab = subject
     expect { create(:tab) }.to raise_error(ActiveRecord::RecordInvalid)

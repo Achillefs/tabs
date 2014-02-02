@@ -13,7 +13,7 @@
     <ul class="grid1 column v<%= grid %>" data-vertical="<%= grid %>">
       <% (1..@tab.string_count).to_a.reverse.each do |string| %>
         <li class="s<%= string %>" data-string="<%= string %>">
-          <div id="<%= grid %>_<%= string %>"></div>
+          <div id="g<%= grid %>_<%= string %>"></div>
         </li>
       <% end %>
     </ul>

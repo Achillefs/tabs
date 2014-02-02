@@ -40,10 +40,15 @@ class Tab < ActiveRecord::Base
     fretboard = (1..string_count).collect {(1..tab_length).collect { "---" }}
     vertical_count = 0
     verticals.each do |strum|
-      # it's a single note
+      
       if strum.first.is_a?(Integer)
-        string, fret = strum
-        fretboard[string-1][vertical_count] = fret >= 10 ? "#{fret}-" : "#{fret}--"
+        if strum == [0] # it's a pause
+          fretboard[0][vertical_count] = '---'
+        else # it's a single note
+          string, fret = strum
+          fretboard[string-1][vertical_count] = fret >= 10 ? "#{fret}-" : "#{fret}--"
+        
+        end
       # it's a chord
       else
         strum.each do |note|
