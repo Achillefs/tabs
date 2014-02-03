@@ -2,7 +2,7 @@ class Tab < ActiveRecord::Base
   INSTRUMENTS = %W[ guitar 7string-guitar bass 5string-bass mandolin 4string-bouzouki 3string-bouzouki ]
   
   before_save :default_values
-  validates :title, :content, :presence => true, :uniqueness => true, :allow_nil => false
+  validates :title, :content, presence: true, uniqueness: true, allow_nil: false
   attr_accessible :title, :content, :instrument
   
   def has_user?
@@ -36,8 +36,8 @@ class Tab < ActiveRecord::Base
 =end
   def fretboard
     return @fretboard if @fretboard.present? and !self.content_changed?
-    
     fretboard = (1..string_count).collect {(1..tab_length).collect { "---" }}
+    
     vertical_count = 0
     verticals.each do |strum|
       
@@ -52,8 +52,14 @@ class Tab < ActiveRecord::Base
       # it's a chord
       else
         strum.each do |note|
-          string, fret = note
-          fretboard[string-1][vertical_count] = fret >= 10 ? "#{fret}-" : "#{fret}--"
+          begin
+            string, fret = note
+            fretboard[string-1][vertical_count] = fret >= 10 ? "#{fret}-" : "#{fret}--"
+          rescue Exception => e
+            raise 'Error parsing ' + note.inspect
+          end
+          
+          
         end
       end
       vertical_count += 1
@@ -80,17 +86,8 @@ class Tab < ActiveRecord::Base
     end
   end
   
-=begin rdoc
-  Returns content as structured array. Old school, yeah!
-=end
   def verticals
-    content.split.map do |vertical| 
-      if vertical.include? '-'
-        vertical.split('-').map {|n| n.split('|').map(&:to_i)}
-      else
-        vertical.split('|').map(&:to_i)
-      end
-    end
+    JSON.parse(content)
   end
 protected
   def default_values

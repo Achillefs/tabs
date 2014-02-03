@@ -93,5 +93,22 @@ describe "Tabs", js: true do
       send_keys [:control, 's']
       page.should have_css '#errorExplanation'
     end
+    
+    it 'can save a tab' do
+      fill_in 'tab_title', with: 'test'
+      send_keys '5'
+      send_keys :arrow_right
+      send_keys :arrow_right
+      send_keys '12'
+      send_keys :arrow_up
+      send_keys '11'
+      click_button 'Create Tab'
+      page.should_not have_css '#errorExplanation'
+      current_path.should eq("/tabs/#{Tab.last.id}")
+      click_link 'edit'
+      page.should have_css 'div#g1_1', text: '5'
+      page.should have_css 'div#g3_1', text: '12'
+      page.should have_css 'div#g3_2', text: '11'
+    end
   end
 end

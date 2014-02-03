@@ -12,7 +12,7 @@ describe TabsController do
   describe '#create' do
     before { 
       tab = build(:tab)
-      post :create, :tab => { :title => tab.title, :content => tab.content }
+      post :create, tab: { title: tab.title, content: tab.content }
     }
     
     it { response.code.to_i.should eq(302) }
@@ -24,7 +24,7 @@ describe TabsController do
     end
   end
   describe "#show" do
-    before { @tab = create(:tab); get :show, :id => @tab.id }
+    before { @tab = create(:tab); get :show, id: @tab.id }
     
     it { response.code.to_i.should eq(200) }
     it { response.should render_template("show") }
@@ -32,7 +32,7 @@ describe TabsController do
   end
   
   describe "#edit" do
-    before { @tab = create(:tab); get :edit, :id => @tab.id }
+    before { @tab = create(:tab); get :edit, id: @tab.id }
     
     it { response.code.to_i.should eq(200) }
     it { response.should render_template("new") }

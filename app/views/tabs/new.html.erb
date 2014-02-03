@@ -21,3 +21,15 @@
   </div>
   <p><%= f.submit %></p>
 <% end %>
+
+<% if @tab.content.present? %>
+<script>
+var content = <%= JSON.parse(@tab.content) %>;
+for (var x = 0; x < content.length; x++) {
+  for (var y = 0; y < content[x].length; y++) {
+    data = content[x][y];
+    $('.fretboard ul[data-vertical="'+(x+1)+'"] li[data-string="'+data[0]+'"] div').text(data[1]);
+  };
+};
+</script>
+<% end %>

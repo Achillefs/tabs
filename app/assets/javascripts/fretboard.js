@@ -110,7 +110,22 @@ $(function() {
     
     // submit form
     $('#new_tab').submit(function(){
-      
+      content = []
+      var vertical = 0
+      //grab all fret data
+      $('.fretboard ul').each(function(){ // which time are we at?
+        var v = parseInt($(this).attr('data-vertical'));
+        content[vertical] = [];
+        $(this).find('li').each(function(){
+          var string = parseInt($(this).attr('data-string'));
+          if ($(this).find('div').text() != '') { // we have user input
+            content[vertical].push([string,parseInt($(this).find('div').text())]);
+          }
+        });
+        vertical+=1
+      });
+      console.log(JSON.stringify(content))
+      $('#tab_content').val(JSON.stringify(content));
     });
   };
 });
