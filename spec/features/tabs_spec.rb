@@ -17,7 +17,7 @@ describe "Tabs", js: true do
       page.should have_css '.field_with_errors', count: 1
       click_link 'close'
       sleep 2
-      find('.flash-message.error').visible?.should eq(false)
+      page.should_not have_css '.flash-message.error'
     end
   end
   
