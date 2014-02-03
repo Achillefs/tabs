@@ -1,3 +1,5 @@
 == The Little Tab Buddy
 
-This project started out when I wanted to learn how to properly use Capybara and Selenium. I chose to make a little app that lets you input guitar tabs using only the computer keyboard in a conmfortable manner. It sports keyboard tab navigation, tab reset with Ctl+Backspace, basic tab validation and Tab save with Cmd+S. That's pretty much all it does, but, since I actually found myself using it a lot in the past couple of years to share licks and ideas with band mates, here it is!
+This project started out when I wanted to learn how to properly use Capybara and Selenium. I chose to make a little app that lets you input guitar tabs using only avcomputer keyboard. It sports keyboard tab navigation, tab reset with Ctl+Backspace, basic tab validation and Tab save with Cmd+S. That's pretty much all it does, but, since I actually found myself using it a lot in the past couple of years to share licks and ideas with band mates, here it is!
+
+You can write chords and single notes, but it doesn't support special stuff like hammer-ons and pull-offs. It's ideal to write a tab and then send it over along with a quick recording of a little lick.
