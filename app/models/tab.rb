@@ -2,6 +2,7 @@ class Tab < ActiveRecord::Base
   INSTRUMENTS = %W[ guitar 7string-guitar bass 5string-bass mandolin 4string-bouzouki 3string-bouzouki ]
   
   before_save :default_values
+  before_validation :set_content
   validates :title, :content, presence: true, uniqueness: true, allow_nil: false
   attr_accessible :title, :content, :instrument
   
@@ -92,5 +93,11 @@ class Tab < ActiveRecord::Base
 protected
   def default_values
     self.instrument = 'guitar' if self.instrument.blank?
+  end
+  
+  def set_content
+    if(JSON.parse(self.content).uniq.flatten.empty?)
+      self.content = nil
+    end
   end
 end

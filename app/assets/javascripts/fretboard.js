@@ -108,8 +108,13 @@ $(function() {
       $('form input:submit').click();
     });
     
+    $('.fretboard li').click(function(){
+      getCurrent();
+      $(this).addClass('current')
+    });
+    
     // submit form
-    $('#new_tab').submit(function(){
+    $('form').submit(function(){
       content = []
       var vertical = 0
       //grab all fret data
@@ -124,7 +129,6 @@ $(function() {
         });
         vertical+=1
       });
-      console.log(JSON.stringify(content))
       $('#tab_content').val(JSON.stringify(content));
     });
   };
